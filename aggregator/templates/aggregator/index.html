@@ -1,47 +1,95 @@
 {% load static %}
 
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Headliner: Aggregator</title>
     <link rel="stylesheet" href="{% static 'aggregator/style.css' %}">
 </head>
 <body>
-    {% for network, page_obj in paginated_headlines.items %}
-    <table>
-        <caption>{{ network }} Headlines</caption>
-        <thead>
-            <tr>
-                <th>Headline</th>
-                <th>Link</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for headline in page_obj.object_list %}
-            <tr>
-                <td>{{ headline.text }}</td>
-                <td>
-                    {% if headline.link %}
-                    <a href="{{ headline.link }}" target="_blank">{{ headline.link }}</a>
-                    {% else %}
-                    No link available
-                    {% endif %}
-                </td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
-    <div class="pagination">
-        {% if page_obj.has_previous %}
-        <a href="?{{ network }}_page={{ page_obj.previous_page_number }}">Previous</a>
-        {% endif %}
+
+    <h1>Headliner</h1>
+
+    <!-- Search and Filter Form -->
+    <form method="get" action="">
+        <input 
+            type="text" 
+            name="search" 
+            placeholder="Search headlines..." 
+            value="{{ request.GET.search }}">
         
-        <span>Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}</span>
+        <select name="network">
+            <option value="">All Networks</option>
+            <option value="bbc news" {% if request.GET.network == 'bbc news' %}selected{% endif %}>BBC News</option>
+            <option value="nbc news" {% if request.GET.network == 'nbc news' %}selected{% endif %}>NBC News</option>
+        </select>
         
-        {% if page_obj.has_next %}
-        <a href="?{{ network }}_page={{ page_obj.next_page_number }}">Next</a>
-        {% endif %}
-    </div>      
-    {% endfor %}
+        <button type="submit">Search</button>
+    </form>
+
+    <!-- Display Search Results Information -->
+    {% if search_query or selected_network %}
+    <div class="search-results-info">
+        <h2>Search Results</h2>
+        <p>
+            {% if search_query %}
+                Showing results for search term: <strong>{{ search_query }}</strong>
+            {% endif %}
+            {% if selected_network %}
+                {% if search_query %}<br>{% endif %}
+                Filtered by network: <strong>{{ selected_network }}</strong>
+            {% endif %}
+        </p>
+    </div>
+    {% endif %}
+
+    <!-- Display Headlines -->
+    {% if paginated_headlines %}
+        {% for network, page_obj in paginated_headlines.items %}
+        <table>
+            <caption>{{ network }} Headlines</caption>
+            <thead>
+                <tr>
+                    <th>Headline</th>
+                    <th>Link</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for headline in page_obj.object_list %}
+                <tr>
+                    <td>{{ headline.text }}</td>
+                    <td>
+                        {% if headline.link %}
+                        <a href="{{ headline.link }}" target="_blank">{{ headline.link }}</a>
+                        {% else %}
+                        No link available
+                        {% endif %}
+                    </td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="2">No headlines found for this search.</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <div class="pagination">
+            {% if page_obj.has_previous %}
+            <a href="?{{ network }}_page={{ page_obj.previous_page_number }}">Previous</a>
+            {% endif %}
+            
+            <span>Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}</span>
+            
+            {% if page_obj.has_next %}
+            <a href="?{{ network }}_page={{ page_obj.next_page_number }}">Next</a>
+            {% endif %}
+        </div>
+        {% endfor %}
+    {% else %}
+        <p>No headlines found for the given search and filter criteria.</p>
+    {% endif %}
+
 </body>
 </html>

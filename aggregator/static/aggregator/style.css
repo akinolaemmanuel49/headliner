@@ -1,92 +1,156 @@
+/* General Reset */
 body {
     font-family: Arial, sans-serif;
-    background-color: #f4f4f9;
     margin: 0;
-    padding: 0;
+    padding: 20px;
+    background-color: #f5f5f5;
+    color: #333;
 }
 
-table {
-    width: 80%;
-    margin: 20px auto;
-    border-collapse: collapse;
+/* Page Title */
+h1 {
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 20px;
+    color: #007BFF;
+}
+
+/* Search and Filter Form */
+form {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 20px;
+    padding: 20px;
+    background: #fff;
+    border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    background-color: #ffffff;
+}
+
+form input[type="text"] {
+    padding: 10px;
+    font-size: 1rem;
+    width: 250px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    outline: none;
+    transition: border-color 0.3s;
+}
+
+form input[type="text"]:focus {
+    border-color: #007BFF;
+}
+
+form select {
+    padding: 10px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background: #fff;
+    cursor: pointer;
+}
+
+form button {
+    padding: 10px 20px;
+    font-size: 1rem;
+    color: #fff;
+    background-color: #007BFF;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+form button:hover {
+    background-color: #0056b3;
+}
+
+/* Search Results Info */
+.search-results-info {
+    text-align: center;
+    margin: 20px 0;
+    padding: 10px;
+    background: #e9f7fd;
+    border: 1px solid #d1ecf1;
+    border-radius: 5px;
+    color: #0c5460;
+}
+
+.search-results-info h2 {
+    margin: 0 0 10px 0;
+}
+
+/* Headlines Table */
+table {
+    width: 100%;
+    margin: 20px 0;
+    border-collapse: collapse;
+    background: #fff;
+    border-radius: 5px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     table-layout: fixed;
 }
 
-caption {
-    font-size: 1.5em;
+table caption {
+    font-size: 1.2rem;
     font-weight: bold;
-    margin: 10px;
-    color: #333;
+    padding: 10px;
+    background: #007BFF;
+    color: white;
+    text-align: left;
 }
 
-th, td {
-    text-align: left;
+table th,
+table td {
     padding: 10px;
+    text-align: left;
     border: 1px solid #ddd;
 }
 
-th {
-    background-color: #0078D7;
-    color: #ffffff;
-    font-size: 1.1em;
+table th {
+    background: #f4f4f4;
+    font-weight: bold;
 }
 
-tr:nth-child(even) {
-    background-color: #f9f9f9;
-}
-
-tr:hover {
-    background-color: #f1f1f1;
-}
-
-a {
-    color: #0078D7;
+table td a {
+    color: #007BFF;
     text-decoration: none;
 }
 
-a:hover {
+table td a:hover {
     text-decoration: underline;
 }
 
-h1, p {
-    text-align: center;
-    color: #333;
+table tr:nth-child(even) {
+    background: #f9f9f9;
 }
 
+/* Pagination */
 .pagination {
-    display: flex;
-    justify-content: center; /* Center the pagination block */
-    align-items: center;
-    margin: 20px 0; /* Space above and below the pagination */
+    text-align: center;
+    margin: 20px 0;
 }
 
 .pagination a {
-    padding: 10px 15px; /* Add padding for the buttons */
-    margin: 0 5px; /* Space between the buttons */
-    background-color: #0078D7; /* Button background color */
-    color: white; /* Text color */
-    text-decoration: none; /* Remove underline */
-    border-radius: 5px; /* Rounded corners */
-    font-weight: bold; /* Make the text bold */
-    transition: background-color 0.3s ease; /* Smooth hover effect */
+    padding: 8px 12px;
+    margin: 0 5px;
+    background-color: #007BFF;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s;
 }
 
-/* Hover effect for pagination buttons */
 .pagination a:hover {
-    background-color: #005fa3; /* Darker shade on hover */
-}
-
-/* Style for the disabled pagination links (previous/next) */
-.pagination a[disabled] {
-    background-color: #e0e0e0; /* Grey color for disabled state */
-    cursor: not-allowed; /* Show a not-allowed cursor */
-    color: #888; /* Lighter color for text */
+    background-color: #0056b3;
 }
 
 .pagination span {
-    padding: 10px;
-    font-size: 1.1em;
+    padding: 8px 12px;
+    margin: 0 5px;
+    background-color: #e9ecef;
     color: #333;
+    border-radius: 5px;
 }
