@@ -1,0 +1,47 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Headliner: Aggregator</title>
+    <link rel="stylesheet" href="{% static 'aggregator/style.css' %}">
+</head>
+<body>
+    {% for network, page_obj in paginated_headlines.items %}
+    <table>
+        <caption>{{ network }} Headlines</caption>
+        <thead>
+            <tr>
+                <th>Headline</th>
+                <th>Link</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for headline in page_obj.object_list %}
+            <tr>
+                <td>{{ headline.text }}</td>
+                <td>
+                    {% if headline.link %}
+                    <a href="{{ headline.link }}" target="_blank">{{ headline.link }}</a>
+                    {% else %}
+                    No link available
+                    {% endif %}
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <div class="pagination">
+        {% if page_obj.has_previous %}
+        <a href="?{{ network }}_page={{ page_obj.previous_page_number }}">Previous</a>
+        {% endif %}
+        
+        <span>Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}</span>
+        
+        {% if page_obj.has_next %}
+        <a href="?{{ network }}_page={{ page_obj.next_page_number }}">Next</a>
+        {% endif %}
+    </div>      
+    {% endfor %}
+</body>
+</html>

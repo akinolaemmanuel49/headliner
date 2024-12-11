@@ -1,0 +1,92 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f9;
+    margin: 0;
+    padding: 0;
+}
+
+table {
+    width: 80%;
+    margin: 20px auto;
+    border-collapse: collapse;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: #ffffff;
+    table-layout: fixed;
+}
+
+caption {
+    font-size: 1.5em;
+    font-weight: bold;
+    margin: 10px;
+    color: #333;
+}
+
+th, td {
+    text-align: left;
+    padding: 10px;
+    border: 1px solid #ddd;
+}
+
+th {
+    background-color: #0078D7;
+    color: #ffffff;
+    font-size: 1.1em;
+}
+
+tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+tr:hover {
+    background-color: #f1f1f1;
+}
+
+a {
+    color: #0078D7;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+h1, p {
+    text-align: center;
+    color: #333;
+}
+
+.pagination {
+    display: flex;
+    justify-content: center; /* Center the pagination block */
+    align-items: center;
+    margin: 20px 0; /* Space above and below the pagination */
+}
+
+.pagination a {
+    padding: 10px 15px; /* Add padding for the buttons */
+    margin: 0 5px; /* Space between the buttons */
+    background-color: #0078D7; /* Button background color */
+    color: white; /* Text color */
+    text-decoration: none; /* Remove underline */
+    border-radius: 5px; /* Rounded corners */
+    font-weight: bold; /* Make the text bold */
+    transition: background-color 0.3s ease; /* Smooth hover effect */
+}
+
+/* Hover effect for pagination buttons */
+.pagination a:hover {
+    background-color: #005fa3; /* Darker shade on hover */
+}
+
+/* Style for the disabled pagination links (previous/next) */
+.pagination a[disabled] {
+    background-color: #e0e0e0; /* Grey color for disabled state */
+    cursor: not-allowed; /* Show a not-allowed cursor */
+    color: #888; /* Lighter color for text */
+}
+
+.pagination span {
+    padding: 10px;
+    font-size: 1.1em;
+    color: #333;
+}
